@@ -86,11 +86,26 @@ SELECT s.event_id,COUNT(*) AS SessionsCount FROM sessions s
 GROUP BY event_id HAVING COUNT(*)=(SELECT  MAX(CNT) FROM
  ( SELECT COUNT(*) AS CNT FROM sessions GROUP BY event_id)AS sub);
 
+--13
+SELECT city , AVG(f.rating) FROM Events e 
+JOIN feedback f 
+on e.event_id=f.event_id
+GROUP BY city;
+
 --14
 SELECT event_id,COUNT(registration_id)
 FROM registration 
 GROUP
  BY event_id LIMIT 3;
+
+--15
+SELECT s1.event_id,s1.session_id,s1.start_time,s2.end_time,
+       s2.session_id,s2.start_time,s2.end_time
+FROM sessions s1
+JOIN sessions s2
+on s1.event_id=s2.event_id 
+AND s1.session_id  <s2.session_id
+AND s1.end_time> s2.start_time AND s2.end_time >s1.start_time;
 
 --16
 
@@ -98,6 +113,16 @@ SELECT * FROM users
  WHERE registration_date >= (CURRENT_DATE- INTERVAL 30 DAY)
   AND user_id NOT IN
  (SELECT user_id FROM Registration);
+
+--17
+SELECT speaker_name, COUNT(*) FROM sessions
+    GROUP BY speaker_name
+    HAVING  count(*)>1;
+
+--18
+SELECT event_id ,title FROM events WHERE
+ event_id NOT IN 
+ (SELECT event_id from resources);
 
 --19
 SELECT e.event_id,r.totalreg,f.rate FROM events e 
