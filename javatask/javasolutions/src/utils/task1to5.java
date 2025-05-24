@@ -10,6 +10,7 @@ public class task1to5 {
         //task2 simpleCalculator();
         //task3 oddOrEven();
         //task4 Leap();
+        //task5 MultiplicationTable();
         sc.close();
     }
      public static void simpleCalculator(){
@@ -41,6 +42,12 @@ public class task1to5 {
             System.out.println("Leap");
         else
             System.out.println("Not Leap");
+    }
+    public static void MultiplicationTable(){
+        System.out.println("Enter a number:");
+        int a=sc.nextInt();
+        for(int i=0;i<11;i++)
+            System.out.println(a+"*"+i+"="+(a*i));
     }
 
 
