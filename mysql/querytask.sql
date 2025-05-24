@@ -73,6 +73,7 @@ WHERE e.event_id IN (SELECT event_id FROM registration)
 AND e.event_id NOT IN (SELECT event_id FROM feedback)  ;
 
 
+
 --11
 SELECT  registration_date,
 COUNT(DISTINCT user_id )
