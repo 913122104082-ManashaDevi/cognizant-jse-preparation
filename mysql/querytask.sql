@@ -132,6 +132,19 @@ JOIN (SELECT event_id, AVG(rating) as rate FROM feedback
        GROUP BY (event_id)) f 
 ON e.event_id=r.event_id AND e.event_id=f.event_id 
 WHERE e.status='completed';
+
+--20
+SELECT u.user_id ,
+Count(DISTINCT r.event_id) as attended,
+COUNT( DISTINCT f.feedback_id) submitted
+FROM Users u 
+LEFT JOIN registration r ON r.user_id=u.user_id
+LEFT JOIN (SELECT event_id FROM events WHERE status='completed')e 
+ON r.event_id=e.event_id 
+LEFT JOIN Feedback f ON f.user_id=u.user_id
+GROUP BY u.user_id ;
+
+
 --21
 SELECT user_id,COUNT(feedback_id) AS FBCOUNT 
 FROM feedback
@@ -141,6 +154,20 @@ ORDER BY COUNT(feedback_id) DESC LIMIT 5;
 --22
 SELECT user_id,event_id FROM Registration
  GROUP BY event_id,user_id HAVING COUNT(*)>1 ;
+
+--23
+SELECT MONTH(registration_date)AS MONTH,COUNT(*) AS registration_count
+FROM registration
+WHERE TIMESTAMPDIFF(DAY,registration_date,CURRENT_DATE)<=365
+GROUP BY MONTH(registration_date)
+ORDER BY MONTH(registration_date) ; 
+
+--24
+SELECT event_id,
+AVG(TIMESTAMPDIFF(MINUTE,start_time,end_time)) AS avg_time_in_minutes
+FROM sessions s
+GROUP BY event_id
+ORDER BY event_id;
 
 --25
 SELECT event_id,title
