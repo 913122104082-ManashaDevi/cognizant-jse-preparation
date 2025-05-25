@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+  width: 300px;
+  margin: 50px auto;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+output {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #e0ffe0;
+  border: 1px solid #90ee90;
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <form method="post">
+      <label for="name">Name</label> 
+      <input type="text" id="name" placeholder="Manasha" autofocus required> 
+      <label for="email">Email</label> 
+      <input type="email" id="mail" placeholder="manashadevitg@gmail.com" required> 
+      <label for="date">date</label> 
+      <input type="date" id="date" placeholder="24-03-2025" required>
+      <label for="type">event_type</label> 
+      <select id="type">
+      <option value="music">Music concert</option>
+      <option value="art">art exibition</option>
+      <option value="tech">Tech confrence</option>
+      </select>
+      <label for="message">message</label> 
+      <textarea id="message" rows="3"  cols="3" placeholder=" any details required"></textarea>
+      <button type="submit" id="button1"> Register</button>
+      <output id="confirmation" >
+      </output>
+    </form>
+    <script>
+        document.getElementById('button1').addEventListener('click',(e)=>{
+        e.preventDefault();
+        document.getElementById('confirmation').value = "Form submitted";
+        });
+    </script>
+</body>
+</html>
